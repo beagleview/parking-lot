@@ -9,7 +9,7 @@ export class Parking {
     @Column({ length: 50 })
     name: string;
 
-    @Column('text')
+    @Column('text', { nullable: true, })
     description: string
 
     @OneToMany(type => ParkingFloor, ParkingFloor => ParkingFloor.parking)
