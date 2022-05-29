@@ -3,5 +3,6 @@ import { ParkingFloorService } from './parking-floor.service';
 
 @Module({
   providers: [ParkingFloorService],
+  exports:[ParkingFloorService]
 })
 export class ParkingFloorModule {}
