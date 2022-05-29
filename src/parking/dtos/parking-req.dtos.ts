@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsOptional } from "class-validator";
 
 export class ParkingRequest {
-    @IsOptional()
+    @IsNotEmpty()
     name: string;
 
     @IsOptional()
