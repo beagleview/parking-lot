@@ -12,10 +12,11 @@ export class ParkingSlot {
     name: string
 
     @Column({
+        name: 'slot_type',
         type: 'enum',
         enum: ParkingSlotType,
     })
-    slot_type: ParkingSlotType
+    slotType: ParkingSlotType
 
     @ManyToOne(type => ParkingFloor, parkingFloor => parkingFloor.parkingSlot)
     @JoinColumn({ name: 'parking_floor_id' })
