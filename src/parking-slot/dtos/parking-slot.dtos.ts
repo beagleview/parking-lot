@@ -9,6 +9,9 @@ export class ParkingSlotReq {
     @IsEnum(ParkingSlotType)
     type: ParkingSlotType;
 
+    @IsOptional()
+    isAvailable: boolean = true;
+
     @IsNotEmpty()
     floorId: number;
 }
