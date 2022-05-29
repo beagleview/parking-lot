@@ -16,8 +16,8 @@ export class Parking {
     parking_floors: ParkingFloor[]
 
     @CreateDateColumn({ type: "timestamp with time zone", default: () => "CURRENT_TIMESTAMP" })
-    createdDatetime: string;
+    created_datetime: string;
 
     @UpdateDateColumn({ type: "timestamp with time zone", default: () => "CURRENT_TIMESTAMP" })
-    updatedDate: string
+    updated_datetime: string
 }
