@@ -28,6 +28,6 @@ export class ParkingController {
 
     @Post('floors')
     createFloor(@Body() req: ParkingFloorReq) { 
-        return this.floorService.create(req);
+        return this.parkingService.createFloor(req);
     }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Parking } from 'src/parking/parking.entity';
 import { Repository } from 'typeorm';
 import { ParkingFloorReq } from './dtos/parking-floor-req.dtos';
 import { ParkingFloor } from './parking-floor.entity';
@@ -15,8 +16,12 @@ export class ParkingFloorService {
         return result;
     }
 
-    public async create(req: ParkingFloorReq): Promise<ParkingFloor> {
-        const floor: ParkingFloor = await this.floorRepo.create({ ...req });
+    public async create(req: ParkingFloorReq, parkingData: Parking): Promise<ParkingFloor> {
+        const createFloor: ParkingFloor = new ParkingFloor();
+        createFloor.name = req.name;
+        createFloor.parking = parkingData;
+
+        const floor: ParkingFloor = await this.floorRepo.create({ ...createFloor });
         return this.floorRepo.save(floor);
     }
 }
