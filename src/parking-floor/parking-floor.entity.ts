@@ -15,7 +15,7 @@ export class ParkingFloor {
     parking: Parking
 
     @OneToMany(type => ParkingSlot, parkingSlot => parkingSlot.parkingFloor)
-    parkingSlot: ParkingSlot
+    parkingSlots: ParkingSlot[]
 
     @CreateDateColumn({ name: 'created_datetime', type: 'timestamp with time zone', default: () => 'CURRENT_TIMESTAMP' })
     createdDateTime: string;

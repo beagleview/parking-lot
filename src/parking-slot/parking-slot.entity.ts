@@ -22,7 +22,7 @@ export class ParkingSlot {
     @Column({ name: 'is_available', default: true })
     isAvailable: boolean
 
-    @ManyToOne(type => ParkingFloor, parkingFloor => parkingFloor.parkingSlot)
+    @ManyToOne(type => ParkingFloor, parkingFloor => parkingFloor.parkingSlots)
     @JoinColumn({ name: 'parking_floor_id' })
     parkingFloor: ParkingFloor
 

@@ -16,7 +16,8 @@ export class ParkingFloorService {
 
     public async findAll(): Promise<ParkingFloor[]> {
         const result = await this.floorRepo.find({
-            order: { createdDateTime: "DESC" }
+            order: { createdDateTime: "DESC" },
+            relations: ['parkingSlots']
         });
         return result;
     }

@@ -21,6 +21,7 @@ export class ParkingSlotService {
         createSlot.name = req.name;
         createSlot.slotType = req.type;
         createSlot.parkingFloor = floorData;
+        createSlot.isAvailable = req.isAvailable;
 
         const slot: ParkingSlot = await this.slotRepo.create({ ...createSlot });
         return this.slotRepo.save(slot);
