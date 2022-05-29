@@ -1,0 +1,16 @@
+### Get all parking
+
+GET http://localhost:3000/admin/parkings/ HTTP/1.1
+
+###
+### Create Parking
+
+POST http://localhost:3000/admin/parkings/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "test parking 1",
+    "description": "test parking 1"
+}
+
+###
