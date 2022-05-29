@@ -40,4 +40,17 @@ export class ParkingFloorService {
         }
         else throw new NotFoundException(404, "not found parking id");
     }
+
+    public async findSlotAvailableOnFloor(): Promise<any> {
+        const result = await this.floorRepo
+        .createQueryBuilder('floor')
+        .leftJoinAndSelect('floor.parkingSlots', 'slot')
+        .select('floor.name')
+        .addSelect('COUNT(slot)', 'availableSlot')
+        .where('floor.parking_id = 1')
+        .andWhere('slot.is_available = TRUE')
+        .groupBy('floor.id');
+
+        return result.getRawMany();
+    }
 }

@@ -43,4 +43,9 @@ export class ParkingController {
     createSlot(@Body() req: ParkingSlotReq) { 
         return this.floorService.createSlot(req);
     }
+
+    @Get('floors/free/slots')
+    getFreeSlotonFloor() {
+        return this.floorService.findSlotAvailableOnFloor();
+    }
 }
