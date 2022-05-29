@@ -1,13 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Parking } from 'src/parking/parking.entity';
+import { Parking } from '../parking/parking.entity';
 import { Repository } from 'typeorm';
 import { ParkingFloorReq } from './dtos/parking-floor-req.dtos';
 import { ParkingFloor } from './parking-floor.entity';
+import { ParkingSlotService } from '../parking-slot/parking-slot.service';
+import { ParkingSlotReq } from 'src/parking-slot/dtos/parking-slot.dtos';
 
 @Injectable()
 export class ParkingFloorService {
-    constructor(@InjectRepository(ParkingFloor) private floorRepo: Repository<ParkingFloor>) { }
+    constructor(@InjectRepository(
+        ParkingFloor) private floorRepo: Repository<ParkingFloor>,
+        private slotService: ParkingSlotService
+    ) { }
 
     public async findAll(): Promise<ParkingFloor[]> {
         const result = await this.floorRepo.find({
@@ -23,5 +28,15 @@ export class ParkingFloorService {
 
         const floor: ParkingFloor = await this.floorRepo.create({ ...createFloor });
         return this.floorRepo.save(floor);
+    }
+
+    public async createSlot(req: ParkingSlotReq): Promise<any> {
+        const floorRes = await this.floorRepo.find({
+            where: { id: req.floorId }
+        });
+        if (floorRes.length > 0) {
+            return this.slotService.create(req, floorRes[0]);
+        }
+        else throw new NotFoundException(404, "not found parking id");
     }
 }
