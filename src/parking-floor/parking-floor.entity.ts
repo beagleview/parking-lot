@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, ManyToOne, OneToMany } from "typeorm";
-import { ParkingSlot } from "../parking-slot/parking-slot.entity";
-import { Parking } from "../parking/parking.entity";
+import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
+import { ParkingSlot } from '../parking-slot/parking-slot.entity';
+import { Parking } from '../parking/parking.entity';
 
 @Entity()
 export class ParkingFloor {
@@ -10,16 +10,17 @@ export class ParkingFloor {
     @Column({ length: 10 })
     name: string
 
-    @ManyToOne(type => Parking, parking => parking.parking_floors)
+    @ManyToOne(type => Parking, parking => parking.parkingFloors)
+    @JoinColumn({ name: 'parking_id' })
     parking: Parking
 
-    @OneToMany(type => ParkingSlot, parkingSlot=> parkingSlot.parking_floor)
-    parking_slot: ParkingSlot
+    @OneToMany(type => ParkingSlot, parkingSlot => parkingSlot.parkingFloor)
+    parkingSlot: ParkingSlot
 
-    @CreateDateColumn({ type: "timestamp with time zone", default: () => "CURRENT_TIMESTAMP" })
-    created_datetime: string;
+    @CreateDateColumn({ name: 'created_datetime', type: 'timestamp with time zone', default: () => 'CURRENT_TIMESTAMP' })
+    createdDateTime: string;
 
-    @UpdateDateColumn({ type: "timestamp with time zone", default: () => "CURRENT_TIMESTAMP" })
-    updated_datetime: string
+    @UpdateDateColumn({ name: 'updated_datetime', type: 'timestamp with time zone', default: () => 'CURRENT_TIMESTAMP' })
+    updatedDateTime: string
 
 }

@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, OneToMany } from "typeorm";
-import { ParkingFloor } from "../parking-floor/parking-floor.entity";
+import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, OneToMany } from 'typeorm';
+import { ParkingFloor } from '../parking-floor/parking-floor.entity';
 
 @Entity()
 export class Parking {
@@ -9,15 +9,15 @@ export class Parking {
     @Column({ length: 50 })
     name: string;
 
-    @Column("text")
+    @Column('text')
     description: string
 
     @OneToMany(type => ParkingFloor, ParkingFloor => ParkingFloor.parking)
-    parking_floors: ParkingFloor[]
+    parkingFloors: ParkingFloor[]
 
-    @CreateDateColumn({ type: "timestamp with time zone", default: () => "CURRENT_TIMESTAMP" })
-    created_datetime: string;
+    @CreateDateColumn({ name: 'created_datetime', type: 'timestamp with time zone', default: () => 'CURRENT_TIMESTAMP' })
+    createdDateTime: string;
 
-    @UpdateDateColumn({ type: "timestamp with time zone", default: () => "CURRENT_TIMESTAMP" })
-    updated_datetime: string
+    @UpdateDateColumn({ name: 'updated_datetime', type: 'timestamp with time zone', default: () => 'CURRENT_TIMESTAMP' })
+    updatedDateTime: string
 }
