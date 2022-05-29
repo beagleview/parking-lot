@@ -1,5 +1,5 @@
-import { ParkingSlotType } from "src/dtos/parking-slot-type.dto";
-import { ParkingFloor } from "src/parking-floor/parking-floor.entity";
+import { ParkingSlotType } from "../dtos/parking-slot-type.dto";
+import { ParkingFloor } from "../parking-floor/parking-floor.entity";
 import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, ManyToOne } from "typeorm";
 
 @Entity()

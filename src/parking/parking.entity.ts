@@ -1,5 +1,5 @@
-import { ParkingFloor } from "src/parking-floor/parking-floor.entity";
 import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, OneToMany } from "typeorm";
+import { ParkingFloor } from "../parking-floor/parking-floor.entity";
 
 @Entity()
 export class Parking {
