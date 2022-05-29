@@ -14,3 +14,31 @@ content-type: application/json
 }
 
 ###
+### Get All floor
+GET http://localhost:3000/admin/floors/ HTTP/1.1
+
+###
+### Create floor
+POST http://localhost:3000/admin/floors/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "B",
+    "parkingId": 1
+}
+
+###
+### Get All Slot
+GET http://localhost:3000/admin/slots/ HTTP/1.1
+
+###
+### Create Slot
+POST http://localhost:3000/admin/slots/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "B6",
+    "floorId": 4,
+    "isAvailable": false,
+    "type": "FourWheeler"
+}
