@@ -14,6 +14,7 @@ import { Parking } from './parking/parking.entity';
 import { ParkingFloor } from './parking-floor/parking-floor.entity';
 import { ParkingSlot } from './parking-slot/parking-slot.entity';
 import { Vehicle } from './vehicle/vehicle.entity';
+import { Ticket } from './ticket/ticket.entity';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { Vehicle } from './vehicle/vehicle.entity';
           port: Number(config.get<string>('DB_PORT')),
           username: config.get<string>('DB_USERNAME'),
           password: config.get<string>('DB_PASSWORD'),
-          entities: [Parking, ParkingFloor, ParkingSlot, Vehicle],
+          entities: [Parking, ParkingFloor, ParkingSlot, Vehicle, Ticket],
           ssl: {
             rejectUnauthorized: false,
             ca: readFile('cert/pg-db.crt').toString(),

@@ -1,6 +1,7 @@
+import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { ParkingSlotType } from '../dtos/parking-slot-type.dto';
 import { ParkingFloor } from '../parking-floor/parking-floor.entity';
-import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Ticket } from 'src/ticket/ticket.entity';
 
 @Entity()
 export class ParkingSlot {
@@ -19,6 +20,9 @@ export class ParkingSlot {
     @ManyToOne(type => ParkingFloor, parkingFloor => parkingFloor.parkingSlot)
     @JoinColumn({ name: 'parking_floor_id' })
     parkingFloor: ParkingFloor
+
+    @OneToMany(type => Ticket, ticket => ticket.parkingSlot)
+    tickets: Ticket[]
 
     @CreateDateColumn({ name: 'created_datetime', type: 'timestamp with time zone', default: () => 'CURRENT_TIMESTAMP' })
     createdDateTime: string;
