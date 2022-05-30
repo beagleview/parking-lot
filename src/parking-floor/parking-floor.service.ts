@@ -45,7 +45,7 @@ export class ParkingFloorService {
         const result = await this.floorRepo
         .createQueryBuilder('floor')
         .leftJoinAndSelect('floor.parkingSlots', 'slot')
-        .select('floor.name')
+        .select('floor.name','floorName')
         .addSelect('COUNT(slot)', 'availableSlot')
         .where('floor.parking_id = 1')
         .andWhere('slot.is_available = TRUE')
