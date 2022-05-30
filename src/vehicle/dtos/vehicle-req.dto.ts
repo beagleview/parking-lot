@@ -3,7 +3,7 @@ import { VehicleType } from "../../dtos/vehicle-type.dto";
 
 export class VehicleRequest {
     @IsNotEmpty()
-    name: string;
+    tag: string;
 
     @IsNotEmpty()
     @IsEnum(VehicleType)
