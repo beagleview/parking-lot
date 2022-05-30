@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { ParkingFloorReq } from './dtos/parking-floor-req.dtos';
 import { ParkingFloor } from './parking-floor.entity';
 import { ParkingSlotService } from '../parking-slot/parking-slot.service';
-import { ParkingSlotReq } from 'src/parking-slot/dtos/parking-slot.dtos';
+import { ParkingSlotReq } from 'src/parking-slot/dtos/parking-slot-req.dtos';
 
 @Injectable()
 export class ParkingFloorService {

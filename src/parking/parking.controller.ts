@@ -4,7 +4,7 @@ import { ParkingFloorReq } from '../parking-floor/dtos/parking-floor-req.dtos';
 import { ParkingFloorService } from '../parking-floor/parking-floor.service';
 import { ParkingRequest } from './dtos/parking-req.dtos';
 import { ParkingService } from './parking.service';
-import { ParkingSlotReq } from '../parking-slot/dtos/parking-slot.dtos';
+import { ParkingSlotReq } from '../parking-slot/dtos/parking-slot-req.dtos';
 
 @Controller('admin')
 export class ParkingController {
