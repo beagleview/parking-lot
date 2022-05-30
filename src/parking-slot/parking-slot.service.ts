@@ -3,7 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ParkingFloor } from '../parking-floor/parking-floor.entity';
 import { Repository } from 'typeorm';
 import { ParkingSlot } from './parking-slot.entity';
-import { ParkingSlotReq } from './dtos/parking-slot.dtos';
+import { ParkingSlotReq } from './dtos/parking-slot-req.dtos';
+import { ParkingSlotFreeResponse } from './dtos/parking-slot-free-res.dtos';
 
 @Injectable()
 export class ParkingSlotService {
@@ -27,17 +28,29 @@ export class ParkingSlotService {
         return this.slotRepo.save(slot);
     }
 
-    public async getAvailableSlot(): Promise<any> {
+    public async getOldAvailableSlot(): Promise<ParkingSlotFreeResponse> {
+        const response = new ParkingSlotFreeResponse();
         const result = await this.slotRepo
             .createQueryBuilder('slot')
-            .leftJoinAndSelect('floor.parkingFloor', 'floor')
-            .select('slot.name', 'slotName')
-            .addSelect('slot.type', 'slotType')
+            .leftJoinAndSelect('slot.parkingFloor', 'floor')
+            .select('slot.id', 'slotId')
+            .addSelect('slot.name', 'slotName')
+            .addSelect('slot.slot_type', 'slotType')
             .addSelect('floor.name', 'floorName')
             .where('slot.is_available = TRUE')
             .andWhere('floor.parking_id = 1')
-            .orderBy('slot.id', 'ASC');
+            .orderBy('slot.updated_datetime', 'ASC');
 
-        return result.getRawMany();
+            const totalRecord = await result.getCount();
+            const slotResonse = await result.getRawMany();
+
+            if(totalRecord > 0){
+                response.slotId = slotResonse[0].slotId;
+                response.slotName = slotResonse[0].slotName;
+                response.slotType = slotResonse[0].slotType;
+                response.floorName = slotResonse[0].floorName;
+            }
+            
+        return response;
     }
 }
