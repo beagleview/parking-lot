@@ -26,4 +26,18 @@ export class ParkingSlotService {
         const slot: ParkingSlot = await this.slotRepo.create({ ...createSlot });
         return this.slotRepo.save(slot);
     }
+
+    public async getAvailableSlot(): Promise<any> {
+        const result = await this.slotRepo
+            .createQueryBuilder('slot')
+            .leftJoinAndSelect('floor.parkingFloor', 'floor')
+            .select('slot.name', 'slotName')
+            .addSelect('slot.type', 'slotType')
+            .addSelect('floor.name', 'floorName')
+            .where('slot.is_available = TRUE')
+            .andWhere('floor.parking_id = 1')
+            .orderBy('slot.id', 'ASC');
+
+        return result.getRawMany();
+    }
 }
