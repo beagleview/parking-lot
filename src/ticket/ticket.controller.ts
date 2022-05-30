@@ -1,4 +1,15 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { TicketRequest } from './dtos/ticket-req.dtos';
+import { TicketService } from './ticket.service';
 
-@Controller('ticket')
-export class TicketController {}
+@Controller('tickets')
+export class TicketController {
+    constructor(
+        private ticketService: TicketService
+    ){}
+
+    @Post()
+    findAllParking(@Body() req:TicketRequest) {
+        return this.ticketService.create(req);
+    }
+}

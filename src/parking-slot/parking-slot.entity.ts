@@ -15,10 +15,14 @@ export class ParkingSlot {
         name: 'slot_type',
         type: 'enum',
         enum: ParkingSlotType,
+        default: ParkingSlotType.FourWheeler
     })
-    slotType: ParkingSlotType
+    slotType!: ParkingSlotType
 
-    @ManyToOne(type => ParkingFloor, parkingFloor => parkingFloor.parkingSlot)
+    @Column({ name: 'is_available', default: true })
+    isAvailable: boolean
+
+    @ManyToOne(type => ParkingFloor, parkingFloor => parkingFloor.parkingSlots)
     @JoinColumn({ name: 'parking_floor_id' })
     parkingFloor: ParkingFloor
 

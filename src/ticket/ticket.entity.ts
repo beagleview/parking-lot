@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn, UpdateDateColumn } from 'typeorm';
 import { ParkingSlot } from '../parking-slot/parking-slot.entity';
 import { Vehicle } from '../vehicle/vehicle.entity';
 
@@ -7,11 +7,11 @@ export class Ticket{
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    entry_time: string;
+    @Column({name: 'entry_time', nullable: true})
+    entryTime: string;
 
-    @Column()
-    exit_time: string;
+    @Column({name: 'exit_time', nullable: true})
+    exitTime: string;
 
     @ManyToOne(type => ParkingSlot, parkingSlot=> parkingSlot)
     @JoinColumn({ name: 'parking_slot_id' })
@@ -23,4 +23,7 @@ export class Ticket{
 
     @CreateDateColumn({ name: 'created_datetime', type: 'timestamp with time zone', default: () => 'CURRENT_TIMESTAMP' })
     createdDateTime: string;
+
+    @UpdateDateColumn({ name: 'updated_datetime', type: 'timestamp with time zone', default: () => 'CURRENT_TIMESTAMP' })
+    updatedDateTime: string
 }

@@ -14,3 +14,46 @@ content-type: application/json
 }
 
 ###
+### Get All floor
+GET http://localhost:3000/admin/floors/ HTTP/1.1
+
+###
+### Create floor
+POST http://localhost:3000/admin/floors/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "B",
+    "parkingId": 1
+}
+
+###
+### Get All Slot
+GET http://localhost:3000/admin/slots/ HTTP/1.1
+
+###
+### Create Slot
+POST http://localhost:3000/admin/slots/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "B6",
+    "floorId": 4,
+    "isAvailable": false,
+    "type": "FourWheeler"
+}
+
+###
+### Get All Slot
+GET http://localhost:3000/admin/floors/free/slots HTTP/1.1
+
+###
+### Get Ticket
+POST http://localhost:3000/tickets/ HTTP/1.1
+content-type: application/json
+
+{
+    "entryTime": "30/05/2022 8:00",
+    "vehicleTag": "XD-1234",
+    "vehicleType": "Car"
+}

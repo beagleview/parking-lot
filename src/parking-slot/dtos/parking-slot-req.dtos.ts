@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsOptional } from "class-validator";
-import { ParkingSlotType } from "src/dtos/parking-slot-type.dto";
+import { ParkingSlotType } from "../../dtos/parking-slot-type.dto";
 
 export class ParkingSlotReq {
     @IsNotEmpty()
@@ -8,6 +8,9 @@ export class ParkingSlotReq {
     @IsNotEmpty()
     @IsEnum(ParkingSlotType)
     type: ParkingSlotType;
+
+    @IsOptional()
+    isAvailable: boolean = true;
 
     @IsNotEmpty()
     floorId: number;

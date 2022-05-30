@@ -3,10 +3,11 @@ import { ParkingService } from './parking.service';
 import { ParkingController } from './parking.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Parking } from './parking.entity';
-import { ParkingFloorModule } from 'src/parking-floor/parking-floor.module';
+import { ParkingFloorModule } from '../parking-floor/parking-floor.module';
+import { ParkingSlotModule } from '../parking-slot/parking-slot.module';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Parking]), ParkingFloorModule],
+  imports:[TypeOrmModule.forFeature([Parking]), ParkingFloorModule, ParkingSlotModule],
   providers: [ParkingService],
   controllers: [ParkingController],
 })
