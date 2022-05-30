@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsOptional } from "class-validator";
-import { ParkingSlotType } from "src/dtos/parking-slot-type.dto";
+import { ParkingSlotType } from "../../dtos/parking-slot-type.dto";
 
 export class ParkingSlotReq {
     @IsNotEmpty()
